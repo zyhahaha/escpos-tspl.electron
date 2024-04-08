@@ -11,7 +11,10 @@
     "url": "git+https://github.com/zyhahaha/electron-escpos-tspl-print.git"
   },
   "keywords": [
-    "escpos"
+    "electron",
+    "escpos",
+    "tspl",
+    "printer"
   ],
   "author": "zhaoyang",
   "license": "ISC",
