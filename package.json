@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/zyhahaha/electron-escpos-tspl-print#readme",
   "dependencies": {
-    "node-escpos-win": "^1.0.15",
     "get-pixels": "^3.3.3",
     "jimp": "^0.22.12",
     "wmic-js": "0.0.3"

@@ -17,7 +17,7 @@ queryUsbDevicePathFn(escposPrinterName, usbDevicePath => {
 /**
  * TSPL指令打印机
  */
-const tsplPrinterName = 'HPRT X7'
+const tsplPrinterName = 'HPRT N41'
 queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
     ipcTsplCommand(usbDevicePath, base64Data)
 })

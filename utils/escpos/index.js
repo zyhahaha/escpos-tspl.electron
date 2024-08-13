@@ -1,4 +1,5 @@
-const escpos2 = require('node-escpos-win');
+// const escpos2 = require('node-escpos-win');
+const escpos2 = require('../node-escpos-win.node');
 const getPixel = require('get-pixels');
 
 const rgba2hexFn = (data, shape) => {

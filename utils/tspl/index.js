@@ -1,4 +1,5 @@
-const escpos2 = require('node-escpos-win');
+// const escpos2 = require('node-escpos-win');
+const escpos2 = require('../node-escpos-win.node');
 const { base64ToBuffer } = require('./base64-to-buffer.js');
 
 function ipcTsplCommand (usbDevicePath, base64Data) {

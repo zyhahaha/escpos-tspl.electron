@@ -57,7 +57,8 @@ const printPortMap = () => {
 
 async function queryUsbDevicePathFn (printerName, callbackFn) {
     const printList = await getPrinter();
-    const escpos2 = require('node-escpos-win');
+    // const escpos2 = require('node-escpos-win');
+    const escpos2 = require('./node-escpos-win.node');
 
     const portMap = await printPortMap();
     // 这里获取到的usbList里就会有跟portMap中usbPath一样的设备
