@@ -47,7 +47,7 @@ const rgba2hexFn = (data, shape) => {
     return new Uint8Array(byteArr);
 };
 
-function ipcEscPosCommand (usbDevicePath, base64Data) {
+function ipcEscPosBitmap (usbDevicePath, base64Data) {
     // 假设你的Base64数据是一个PNG图片
     // 移除数据URL前缀（如果存在）
     // console.log('usbDevicePath', usbDevicePath, ipcID)
@@ -87,6 +87,20 @@ function ipcEscPosCommand (usbDevicePath, base64Data) {
     });
 }
 
+/**
+ * 发送指令
+ * @param {*} usbDevicePath usb设备路径
+ * @param {*} commands escpos指令，类型为16进制数组
+ */
+function ipcEscPosCommand(usbDevicePath, commands) {
+    const escPosCommands = Buffer.from(commands);
+    try {
+        escpos2.Print(usbDevicePath, escPosCommands);
+        escpos2.Disconnect(usbDevicePath);
+    } catch (error) { }
+}
+
 module.exports = {
-    ipcEscPosCommand
+    ipcEscPosCommand,
+    ipcEscPosBitmap
 }

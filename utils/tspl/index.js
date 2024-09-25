@@ -2,7 +2,7 @@
 const escpos2 = require('../node-escpos-win.node');
 const { base64ToBuffer } = require('./base64-to-buffer.js');
 
-function ipcTsplCommand (usbDevicePath, base64Data) {
+function ipcTsplBitmap (usbDevicePath, base64Data) {
     base64ToBuffer(base64Data, (data, imgWidth, imgHeight) => {
         const widthInBytes = data[0].length;
         const heightInDots = data.length;
@@ -22,6 +22,17 @@ function ipcTsplCommand (usbDevicePath, base64Data) {
     });
 }
 
+function ipcTsplCommand(usbDevicePath, command) {
+    const commandBuffer = Buffer.concat([
+        Buffer.from(command),
+    ]);
+    try {
+        escpos2.Print(usbDevicePath, commandBuffer);
+        escpos2.Disconnect(usbDevicePath);
+    } catch (error) { }
+}
+
 module.exports = {
-    ipcTsplCommand
+    ipcTsplCommand,
+    ipcTsplBitmap
 }
