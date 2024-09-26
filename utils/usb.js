@@ -2,7 +2,6 @@ const { exec } = require('child_process');
 
 const extractDeviceID = (deviceInfo) => {
     if (!deviceInfo) return null;
-    // console.log('deviceInfo', deviceInfo)
     const match = deviceInfo.match(/USB\\VID_[\w&]+\\[\w]+/i);
     return match ? match[0].replace(/\\+/g, '#').toLowerCase() : null;
 };
@@ -32,14 +31,12 @@ const printPortMap = () => {
             const usbList = [];
             const map = {};
             const lines = stdout.split('\r\r\n');
-            // console.log('lines', lines)
             lines.forEach((line) => {
                 if (line.startsWith('Dependent=')) {
                     const usb = line.replace('Dependent=', '');
                     usbList.push(usb);
                 }
             });
-            // console.log('usbList', usbList)
             for (let i = 0; i < usbList.length; i++) {
                 if (usbList[i].indexOf('USBPRINT') > -1) {
                     const line = usbList[i].replace(/"/g, '');
@@ -57,7 +54,6 @@ const printPortMap = () => {
 
 async function queryUsbDevicePathFn (printerName, callbackFn) {
     const printList = await getPrinter();
-    // const escpos2 = require('node-escpos-win');
     const escpos2 = require('./node-escpos-win.node');
 
     const portMap = await printPortMap();

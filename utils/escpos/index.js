@@ -1,4 +1,3 @@
-// const escpos2 = require('node-escpos-win');
 const escpos2 = require('../node-escpos-win.node');
 const getPixel = require('get-pixels');
 
@@ -50,7 +49,6 @@ const rgba2hexFn = (data, shape) => {
 function ipcEscPosBitmap (usbDevicePath, base64Data) {
     // 假设你的Base64数据是一个PNG图片
     // 移除数据URL前缀（如果存在）
-    // console.log('usbDevicePath', usbDevicePath, ipcID)
     const base64Image = base64Data.replace(/^data:image\/\w+;base64,/, "");
     // 将Base64字符串转换为Buffer
     const imageBuffer = Buffer.from(base64Image, 'base64');
@@ -59,13 +57,11 @@ function ipcEscPosBitmap (usbDevicePath, base64Data) {
             console.error("Error loading image:", err);
             return;
         }
-        // console.log(`Image dimensions: ${pixels.shape.slice(0, 2).join('x')}`);
         let { data, shape } = pixels;
         const width = shape[0];
         const height = shape[1];
         const segmentHeight = 2000; // 根据需要调整
         const segments = Math.ceil(height / segmentHeight);
-        // console.log('segments', segments)
         for (let i = 0; i < segments; i++) {
             const segmentStart = i * segmentHeight * width * 4;
             const segmentEnd = Math.min(segmentStart + segmentHeight * width * 4, data.length);
