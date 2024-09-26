@@ -1,9 +1,12 @@
 # Nodejs-Escpos-Tspl-Print
 It currently supports versions of nodejs >= 12.x.x and windows system.
 
+##### 此库打印时进程是阻塞的，所以如果在Electron中使用时为了防止页面卡死，建议打印前在渲染进程开启Lodding，或者使用child_process方法在子进程中打印。
+##### 在打印机卡纸、缺纸时也是阻塞的，这时可以给使用者提示相应异常（如：缺纸请放入纸张），使用者解决打印机异常即可继续打印。
+##### 当打印机关闭电源时，打印任务会自动结束。
+
 # 简介
-支持Escpos/Tspl指令打印的Nodejs打印库，可用于Nodejs、Electron等环境。
-只支持windows系统。
+支持Escpos/Tspl指令打印的Nodejs打印库，可用于Nodejs、Electron等环境。只支持windows系统。
 
 ### Installation
 ```bash
