@@ -91,7 +91,7 @@ queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
 ```
 
 # 提示
-推荐使用Bitmap打印，因为Bitmap打印支持的打印机型号更多，指令打印会有很多打印机不支持。
-并且Bitmap的打印样式更丰富。如果不知道要如何生成base64格式的图片，可以参考这个：https://github.com/zyhahaha/PrintJson2CanvasBase64/blob/master/example/index.html。
-通过canvans生成base64格式的图片，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码。
-或者可以使用html转canvans的第三方库，比如html2canvas，把html转成canvas，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码。
+##### 推荐使用Bitmap打印，因为Bitmap打印支持的打印机型号更多，指令打印会有很多打印机不支持
+##### 并且Bitmap的打印样式更丰富。如果不知道要如何生成base64格式的图片，可以参考这个：https://github.com/zyhahaha/PrintJson2CanvasBase64/blob/master/example/index.html
+##### 通过canvans生成base64格式的图片，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码
+##### 或者可以使用html转canvans的第三方库，比如html2canvas，把html转成canvas，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码
