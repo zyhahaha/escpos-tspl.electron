@@ -11,12 +11,11 @@ $ npm install escpos-tspl.nodejs
 $ yarn add escpos-tspl.nodejs
 ```
 
-### Example code
+### Example code （Bitmap）
 ```typescript
-import { queryUsbDevicePathFn, ipcTsplBitmap, ipcEscPosBitmap } from '../index.js'
+import { queryUsbDevicePathFn, ipcTsplBitmap, ipcEscPosBitmap } from 'escpos-tspl.nodejs'
 
 const base64Data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAF1JREFUKFNjZCASMDIwMIAwJwMDw3eoHhj7P7IZIEUgEMDAwHAPyhZkYGA4iG4RTCHIlCwGBoaXDAwMKxgYGP7gUggSN4RafwObs2EmguQMoApvElKI1//IJtJZIQDzWQwLlBenDAAAAABJRU5ErkJggg=='
-
 
 /**
  * ESC/POS指令打印机
@@ -42,5 +41,51 @@ queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
     }
     // 获取到打印机usb设备路径后，调用ipcTsplBitmap方法
     ipcTsplBitmap(usbDevicePath, base64Data)
+})
+```
+
+### 指令打印
+```typescript
+// 代码示例：/example/command.js
+import { queryUsbDevicePathFn, ipcTsplCommand, ipcEscPosCommand } from 'escpos-tspl.nodejs'
+
+/**
+ * ESC/POS指令打印机
+ */
+const escposPrinterName = 'XP-80C'
+queryUsbDevicePathFn(escposPrinterName, usbDevicePath => {
+    if (!usbDevicePath) {
+        cosnosole.log('没有找到打印机')
+        return
+    }
+    const commands = [
+        0x1B, 0x40, // 初始化打印机  
+        0x1B, 0x56, 0x30, // 设置文本大小（这里假设是0，表示默认大小）  
+        0x1B, 0x21, 0x30, // 选择标准字符集（美国ASCII）  
+        0x1B, 0x61, 0x30, // 设置文本对齐（0表示左对齐）  
+        0x68, 0x65, 0x6C, 0x6C, 0x6F, // hello 文本（ASCII编码）  
+        0x0A, // LF换行符（在某些打印机上可能需要，但ESC/POS通常使用GS E进行换行）  
+        0x1B, 0x45, 0x32  // GS E 2 回车换行（更常用的ESC/POS换行方式）  
+    ]
+    // 获取到打印机usb设备路径后，调用指令打印方法
+    ipcEscPosCommand(usbDevicePath, commands)
+})
+
+/**
+ * TSPL指令打印机
+ */
+const tsplPrinterName = 'HPRT N41'
+queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
+    if (!usbDevicePath) {
+        cosnosole.log('没有找到打印机')
+        return
+    }
+    const command = `
+        ! 0 200 200 210 1\r\n
+        TEXT 4 0 30 40 hello\r\n
+        PRINT\r\n
+    `
+    // 获取到打印机usb设备路径后，调用指令打印方法
+    ipcTsplCommand(usbDevicePath, command)
 })
 ```

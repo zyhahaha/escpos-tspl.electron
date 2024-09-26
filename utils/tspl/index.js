@@ -22,9 +22,14 @@ function ipcTsplBitmap (usbDevicePath, base64Data) {
     });
 }
 
-function ipcTsplCommand(usbDevicePath, command) {
+/**
+ * 发送指令
+ * @param {*} usbDevicePath usb设备路径
+ * @param {*} commands tspl指令，类型为tspl指令字符串
+ */
+function ipcTsplCommand(usbDevicePath, commands) {
     const commandBuffer = Buffer.concat([
-        Buffer.from(command),
+        Buffer.from(commands),
     ]);
     try {
         escpos2.Print(usbDevicePath, commandBuffer);

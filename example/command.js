@@ -1,6 +1,6 @@
 const {
     queryUsbDevicePathFn,
-    ipcTsplBitmap,
+    ipcTsplCommand,
     ipcEscPosCommand
 } = require('../index.js')
 
@@ -24,7 +24,12 @@ queryUsbDevicePathFn(escposPrinterName, usbDevicePath => {
 /**
  * TSPL指令打印机
  */
-// const tsplPrinterName = 'HPRT N41'
-// queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
-//     ipcTsplBitmap(usbDevicePath, base64Data)
-// })
+const tsplPrinterName = 'HPRT N41'
+queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
+    const command = `
+        ! 0 200 200 210 1\r\n
+        TEXT 4 0 30 40 hello\r\n
+        PRINT\r\n
+    `
+    ipcTsplCommand(usbDevicePath, command)
+})
