@@ -4,6 +4,7 @@
   "description": "electron escpos tspl print",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,12 @@
     "get-pixels": "^3.3.3",
     "jimp": "^0.22.12",
     "wmic-js": "0.0.3"
+  },
+  "devDependencies": {
+    "node-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   }
 }
