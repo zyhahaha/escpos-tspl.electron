@@ -1,11 +1,7 @@
 # Nodejs-Escpos-Tspl-Print
 It currently supports versions of nodejs >= 12.x.x and windows system.
 
-##### 此库打印时进程是阻塞的，所以如果在Electron中使用时为了防止页面卡死，建议打印前在渲染进程开启Lodding，或者使用child_process方法在子进程中打印。
-##### 在打印机卡纸、缺纸时也是阻塞的，这时可以给使用者提示相应异常（如：缺纸请放入纸张），使用者解决打印机异常即可继续打印。
-##### 当打印机关闭电源时，打印任务会自动结束。
-
-## 简介
+### Usage
 支持Escpos/Tspl指令打印的Nodejs打印库，可用于Nodejs、Electron等环境。只支持windows系统。
 
 ### Installation
@@ -93,8 +89,14 @@ queryUsbDevicePathFn(tsplPrinterName, usbDevicePath => {
 })
 ```
 
-## 提示
+### 提示
 ##### 推荐使用Bitmap打印，因为Bitmap打印支持的打印机型号更多，指令打印会有很多打印机不支持
 ##### 并且Bitmap的打印样式更丰富。如果不知道要如何生成base64格式的图片，可以参考这个：https://github.com/zyhahaha/PrintJson2CanvasBase64/blob/master/example/index.html
 ##### 通过canvans生成base64格式的图片，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码
 ##### 或者可以使用html转canvans的第三方库，比如html2canvas，把html转成canvas，然后通过canvas.toDataURL('image/png')方法获取到图片的base64编码
+
+### 关于异常状态
+
+##### 此库打印时进程是阻塞的，所以如果在Electron中使用时为了防止页面卡死，建议打印前在渲染进程开启Lodding，或者使用child_process方法在子进程中打印。
+##### 在打印机卡纸、缺纸时也是阻塞的，这时可以给使用者提示相应异常（如：缺纸请放入纸张），使用者解决打印机异常即可继续打印。
+##### 当打印机关闭电源时，打印任务会自动结束。
