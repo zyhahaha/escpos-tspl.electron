@@ -1,5 +1,5 @@
 {
-  "name": "escpos-tspl.electron",
+  "name": "escpos-tspl.nodejs",
   "version": "1.0.0",
   "description": "electron escpos tspl print",
   "main": "index.js",
