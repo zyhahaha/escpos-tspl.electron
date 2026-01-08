@@ -1,10 +1,8 @@
 # Nodejs-Escpos-Tspl-Print
-It currently supports versions of nodejs >= 12.x.x and windows system.
 
-### Usage
 支持Escpos/Tspl指令打印的Nodejs打印库，可用于Nodejs、Electron等环境。只支持windows系统。
 
-### Installation
+### 安装
 ```bash
 $ npm install escpos-tspl.nodejs
 $ yarn add escpos-tspl.nodejs
